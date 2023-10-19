@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Controls</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(12, 3, 56);
+      }
+      select {
+        padding: 8px 20px;
+        border-radius: 8px;
+        border: none;
+      }
+      .main {
+        color: white;
+        padding: 2rem 10rem;
+        height: 100% auto;
+      }
+      .control {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* gap: 5rem; */
+        position: relative;
+      }
+      .form-created {
+        background-color: rgba(227, 225, 225, 0.7);
+
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.57);
+        width: 100%;
+        height: 20px;
+        border-radius: 20px;
+        display: flex;
+
+        flex-direction: column;
+        gap: 2rem;
+        margin-left: 20vw;
+        /* padding: 2.5rem; */
+      }
+      .select {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: fixed;
+        top: 13vh;
+      }
+      .select select {
+        padding: 8px 20px;
+        border-radius: 8px;
+        /* position: fixed;/ */
+      }
+      button {
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      button:active {
+        scale: 0.9;
+      }
+      .main h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .field {
+        display: flex;
+        align-items: center;
+        /* justify-content: space-between; */
+        gap: 0.5vw;
+      }
+      .del {
+        border-radius: 50%;
+        padding: 5px 8px;
+        border: none;
+      }
+      input {
+        padding: 8px 15px;
+        border-radius: 10px;
+        border: none;
+      }
+      .label_cont {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+      .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        /* gap: 21vw;  */
+        /* margin-bottom: 1rem; */
+      }
+      label {
+        font-size: 20px;
+        font-weight: 500;
+      }
+      .form-handler {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+      .form-info,
+      .clone {
+        background-color: rgba(227, 225, 225, 0.7);
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.57);
+        width: 100%;
+        height: 20px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+      }
+      .radioControls,
+      .select_info {
+        display: flex;
+        align-items: start;
+        /* gap: 8vw; */
+        justify-content: space-between;
+      }
+      .data-info {
+        background-color: rgba(227, 225, 225, 0.7);
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.57);
+        width: 100%;
+        height: 20px;
+        border-radius: 20px;
+      }
+      .labelParent {
+        display: flex;
+        align-items: center;
+        gap: 1vw;
+      }
+      .parentDiv {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      .options {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .radio {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .radioChild {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+      .label_info,
+      .options_cont {
+        display: flex;
+        gap: 0.5vw;
+      }
+      .options_cont {
+        margin-top: 0.5rem;
+      }
+
+      .check_cont {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .check_label_cont {
+        /* flex-grow: 1; */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .check_options_cont {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: 10px;
+      }
+      .check_box_cont {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Add Form Controls</h1>
+      <div class="control">
+        <div class="select">
+          <select name="" id="i">
+            <option value="--selcted---">--selcted---</option>
+            <option value="Text">Text</option>
+            <option value="Number">Number</option>
+            <option value="Email">Email</option>
+            <option value="Radio">Radio</option>
+            <option value="Select">Select</option>
+            <option value="CheckBox">CheckBox</option>
+            <option value="Submit">Submit</option>
+          </select>
+
+          <button onclick="fun()">ADD</button>
+        </div>
+        <div class="form-created" id="created"></div>
+      </div>
+      <div class="form-handler">
+        <div class="form-info" id="form-info"></div>
+        <div class="data-info" id="data-info"></div>
+      </div>
+    </div>
+    <script>
+      function fun() {
+        let select = document.querySelector("#i").value;
+        let field2;
+
+        let del;
+        // radio options
+        let form_info = document.getElementById("form-info");
+
+        let delRad = document.createElement("button");
+
+        let select_del = document.createElement("button");
+
+        // select Options
+        let ids = 0;
+          let dc = document.getElementsByClassName("info");
+          for (let i = 0; i < dc.length; i++) {
+            ++ids;
+            dc[i].childNodes[1].childNodes[0].childNodes[0].setAttribute(
+              "id",
+              `${ids}`
+            );
+          }
+
+
+        let form_created = document.querySelector("#created");
+        if (select == "Text" || select == "Number" || select == "Email") {
+          let info = document.createElement("div");
+          let field = document.createElement("div");
+          let label_cont = document.createElement("div");
+          let label_2_cont = document.createElement("div");
+          del = document.createElement("button");
+          field2 = document.createElement("div");
+          let textAdd = document.createElement("button");
+          let input = document.createElement("input");
+          let label = document.createElement("label");
+          let input2 = document.createElement("input");
+          input.placeholder = "Label";
+         
+          // for(let i=0; i<dc.length;i++){
+          //   if(i==1){
+          //     dc[i].childNodes[0].id = dc.length
+          //   }
+          // }
+
+          if (select == "Text") {
+            input2.type = "text";
+            input2.placeholder = "Text";
+            // input2.disabled;
+          } else if (select == "Number") {
+            input2.type = "number";
+            input2.placeholder = " Number";
+          } else {
+            input2.type = "text";
+            input2.placeholder = " Email";
+          }
+          del.innerHTML = "<i class='fa fa-times' style='font-size:16px'></i>";
+          del.className = "del";
+          textAdd.innerHTML = "add";
+          del.addEventListener("click", () => {
+            del.parentNode.parentNode.parentNode.style.display = "none";
+            // form_created.style = "padding:0";
+          });
+          textAdd.addEventListener("click", () => {
+            if (input.value.trim() == "") {
+              return input;
+            } else {
+              label.innerHTML = `${input.value} :-`;
+              input.style.display = "none";
+              textAdd.style.display = "none";
+            }
+          });
+          field.appendChild(input);
+          field.appendChild(label);
+          field.appendChild(textAdd);
+          field2.appendChild(input2);
+          field2.appendChild(del);
+          field.className = "field";
+          field2.className = "field";
+          label_cont.appendChild(field);
+          label_cont.className = "label_cont";
+          label_2_cont.appendChild(field2);
+          label_2_cont.className = "label_cont";
+          info.className = "info";
+          info.appendChild(label_cont);
+          info.appendChild(label_2_cont);
+          form_created.appendChild(info);
+          form_created.style = "padding:1rem";
+          form_created.style.height = "auto";
+        } else if (select == "Radio") {
+          let radioControls = document.createElement("div");
+          let labelParent = document.createElement("div");
+          let radioLabelInput = document.createElement("input");
+          let radioLabel = document.createElement("label");
+          let addlabel = document.createElement("button");
+          let parentDiv = document.createElement("div");
+          let radio = document.createElement("div");
+          let input1 = document.createElement("input");
+          //   let input2 = document.createElement("input");
+          let input3 = document.createElement("input");
+          let radAdd = document.createElement("button");
+          let label1 = document.createElement("label");
+
+          //   let label2 = document.createElement("label");
+          delRad.className = "del";
+          delRad.innerHTML = "<i class='fa fa-times'></i>";
+          input1.type = "radio";
+          input1.name = "gender";
+          input3.placeholder = "Options";
+          //   input2.type = "radio";
+          //   input2.name = "gender";
+          addlabel.innerHTML = "add";
+          radAdd.innerHTML = "add";
+          labelParent.className = "labelParent";
+          labelParent.appendChild(radioLabelInput);
+          labelParent.appendChild(radioLabel);
+          labelParent.appendChild(addlabel);
+          radioControls.appendChild(labelParent);
+          radioControls.appendChild(parentDiv);
+          radioControls.appendChild(delRad);
+          radioControls.className = "radioControls";
+          radioLabelInput.placeholder = "Label";
+          parentDiv.className = "parentDiv";
+          radio.className = "radio";
+
+          parentDiv.appendChild(radio);
+          form_created.appendChild(radioControls);
+          radAdd.addEventListener("click", () => {
+            let newInput = document.createElement("input");
+            newInput.type = "radio";
+            newInput.name = "gender";
+            let newLabel = document.createElement("label");
+            let radioChild = document.createElement("div");
+            radioChild.className = "radioChild";
+            radioChild.appendChild(newInput);
+            radioChild.appendChild(newLabel);
+            newLabel.innerHTML = input3.value;
+
+            input3.value = "";
+
+            radio.appendChild(radioChild);
+          });
+
+          let options = document.createElement("div");
+          let done1 = document.createElement("button");
+          options.className = "options";
+
+          done1.innerHTML = "<i class='fa fa-check'></i>";
+          done1.addEventListener("click", () => {
+            options.style.display = "none";
+          });
+          options.appendChild(input3);
+          options.appendChild(radAdd);
+          options.appendChild(done1);
+          parentDiv.appendChild(options);
+
+          addlabel.addEventListener("click", () => {
+            if (radioLabelInput.value.trim() == "") {
+              return radioLabelInput;
+            } else {
+              radioLabel.innerHTML = `${radioLabelInput.value} :-`;
+              radioLabelInput.style.display = "none";
+              addlabel.style.display = "none";
+            }
+          });
+          delRad.addEventListener("click", () => {
+            delRad.parentNode.innerHTML = "";
+            console.log("first");
+          });
+          form_created.style = "padding:1rem";
+          form_created.style.height = "auto";
+        } else if (select == "Select") {
+          let select_info = document.createElement("div");
+          let label_info = document.createElement("div");
+          let label_input = document.createElement("input");
+          let label_main = document.createElement("label");
+          let label_add = document.createElement("button");
+          let select_div = document.createElement("div");
+          let select_tag = document.createElement("select");
+          let select_option_input = document.createElement("input");
+          let add_select_option = document.createElement("button");
+          let done2 = document.createElement("button");
+          let options_cont = document.createElement("div");
+          let select_option = document.createElement("option");
+          select_info.className = "select_info";
+          label_info.className = "label_info";
+          options_cont.className = "options_cont";
+          label_input.placeholder = "label";
+          label_add.innerHTML = "add";
+          done2.innerHTML = "<i class='fa fa-check'></i>";
+          select_del.innerHTML = "<i class='fa fa-times'></i>";
+          select_del.className = "del";
+          add_select_option.innerHTML = "add";
+          select_option_input.placeholder = "Options";
+          select_option.innerHTML = "---selected---";
+          label_info.appendChild(label_input);
+          label_info.appendChild(label_main);
+          label_info.appendChild(label_add);
+          select_tag.appendChild(select_option);
+          select_div.appendChild(select_tag);
+          options_cont.appendChild(select_option_input);
+          options_cont.appendChild(add_select_option);
+          options_cont.appendChild(done2);
+          select_div.appendChild(options_cont);
+          select_info.appendChild(label_info);
+          select_info.appendChild(select_div);
+          select_info.appendChild(select_del);
+          form_created.appendChild(select_info);
+
+          label_add.addEventListener("click", () => {
+            if (label_input.value.trim() == "") {
+              return label_input;
+            } else {
+              label_main.innerHTML = `${label_input.value} :-`;
+              label_input.style.display = "none";
+              label_add.style.display = "none";
+            }
+          });
+
+          add_select_option.addEventListener("click", () => {
+            let newOption = document.createElement("option");
+            newOption.innerHTML = select_option_input.value;
+            select_tag.appendChild(newOption);
+            select_option_input.value = "";
+          });
+
+          done2.addEventListener("click", () => {
+            options_cont.style.display = "none";
+          });
+
+          select_del.addEventListener("click", () => {
+            select_del.parentNode.innerHTML = "";
+          });
+          form_created.style = "padding:1rem";
+          form_created.style.height = "auto";
+        } else if (select == "CheckBox") {
+          let check_cont = document.createElement("div");
+          let check_label_cont = document.createElement("div");
+          let check_label_input = document.createElement("input");
+          let check_label_main = document.createElement("label");
+          let check_label_add = document.createElement("button");
+          let check_options_cont = document.createElement("div");
+          let check_options_input = document.createElement("input");
+          let check_options_add = document.createElement("button");
+          let check_box_cont = document.createElement("div");
+          let done3 = document.createElement("button");
+          let remove_check = document.createElement("button");
+          // let check_box_options;
+          check_cont.className = "check_cont";
+          check_label_cont.className = "check_label_cont";
+          check_options_cont.className = "check_options_cont";
+          check_box_cont.className = "check_box_cont";
+          check_label_add.innerHTML = "add";
+          check_options_input.placeholder = "options";
+          check_options_add.innerHTML = "add";
+          check_label_input.placeholder = "label";
+          done3.innerHTML = "<i class='fa fa-check'></i>";
+          remove_check.innerHTML = "<i class='fa fa-times'></i>";
+          remove_check.style.borderRadius = "50%";
+          remove_check.className = "del";
+          check_label_cont.appendChild(check_label_main);
+          check_label_cont.appendChild(check_label_input);
+          check_label_cont.appendChild(check_label_add);
+          check_options_cont.appendChild(check_options_input);
+          check_options_cont.appendChild(check_options_add);
+
+          done3.addEventListener("click", () => {
+            check_options_input.style.display = "none";
+            check_options_add.style.display = "none";
+            done3.style.display = "none";
+          });
+          check_options_add.addEventListener("click", () => {
+            let newCheck = document.createElement("input");
+            let newCheckLabel = document.createElement("label");
+            let newCheckCont = document.createElement("div");
+            newCheck.type = "checkbox";
+            newCheckLabel.innerHTML = check_options_input.value;
+            newCheckCont.appendChild(newCheck);
+            newCheckCont.appendChild(newCheckLabel);
+            check_box_cont.appendChild(newCheckCont);
+
+            check_options_cont.appendChild(check_box_cont);
+            check_options_input.value = "";
+          });
+
+          check_options_cont.appendChild(done3);
+          check_cont.appendChild(check_label_cont);
+          check_cont.appendChild(check_options_cont);
+          check_cont.appendChild(remove_check);
+
+          check_label_add.addEventListener("click", () => {
+            check_label_main.innerHTML = `${check_label_input.value}:-`;
+            check_label_add.style.display = "none";
+            check_label_input.style.display = "none";
+          });
+
+          form_created.appendChild(check_cont);
+          form_created.style = "padding:1rem";
+          form_created.style.height = "auto";
+        } else if (select == "Submit") {
+          confirm("Is Your Form Complete ?");
+          let submitBtn = document.createElement("button");
+          submitBtn.innerHTML = "Submit";
+          submitBtn.style.margin = "0 auto";
+          form_created.appendChild(submitBtn);
+
+          submitBtn.addEventListener("click", () => {
+            let ab = document.getElementsByClassName("info");
+            let bc = document.getElementsByClassName("radioControls");
+            let xy = document.getElementsByClassName("select_info");
+            let yz = document.getElementsByClassName("check_cont");
+            for (let i = 0; i < ab.length; i++) {
+              ab[i].childNodes[1].childNodes[0].childNodes[1].remove();
+            }
+            for (let i = 0; i < bc.length; i++) {
+              bc[i].childNodes[2].remove();
+            }
+            for (let i = 0; i < xy.length; i++) {
+              xy[i].childNodes[2].remove();
+            }
+
+            for (let i = 0; i < yz.length; i++) {
+              yz[i].childNodes[2].remove();
+            }
+
+            let innerDiv = document.createElement("div");
+            innerDiv.className = "form-info";
+
+            form_info.style = "padding:1rem";
+            form_info.style.height = "auto";
+            let clone = form_created.cloneNode(true);
+            clone.className = "clone";
+            clone.style.margin = "0";
+            clone.style.backgroundColor = "transparent";
+            clone.style.borderRadius = "0";
+            clone.style.boxShadow = "none";
+            // clone.removeChild('button')
+            form_info.appendChild(clone);
+            clone.childNodes[1].addEventListener("click", () => {
+              let data_info = document.getElementById("data-info");
+              console.log("first");
+              let clone2 = clone.cloneNode(true);
+              data_info.appendChild(clone2);
+              data_info.style.height = "auto";
+              data_info.style.padding = "1rem";
+            });
+            // console.log(clone.childNodes);
+            submitBtn.disabled = true;
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
